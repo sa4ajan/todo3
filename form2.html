@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+		<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>To-Do-Application</h1>
+<div class="adding">
+<p>
+    <button type="button" class="col-sm-offset-2 btn btn-success" onclick="add();">ADD</button>
+                <button type="submit" onclick="logout()" class="col-sm-offset-7 btn btn-danger">Log Out</button>
+                
+</p>
+</div>
+<div class="col-sm-offset-2  col-xs-9">
+<h3 class="bluee">Things to do....</h3>
+ <div class="panel1 panel-default">
+ <div class="panel-body">
+			<table class="table table-condensed">
+			 	<thead>
+			 		 <tr> 
+			 		 	<th>#</th> 
+			 		 	<th>Task</th> 
+			 		 	<th>date</th>
+			 		 	<th>View</th>
+			 		 	<th>Delete</th> 
+			 		 	<th>Update</th>
+			 		 </tr> 
+			 	</thead> 
+			 		<tbody>
+
+			 		</tbody> 
+			</table>
+ </div>
+ </div>
+</div>
+
+<!--jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>
+
+
+function logout(){
+    localStorage.removeItem('name');
+     window.location.href ='file:///F:/Saajan/Intern/Todo/login.html';
+}
+
+
+    var token = "Bearer" +  " " + localStorage.name;
+     $(document).ready(function() {
+     $.ajax({
+        type: "GET",
+        headers: {"Authorization": token},
+        url: "http://localhost:8000/api/todo",
+        dataType:"json", //to parse string into JSON object,     
+        success: function(data){ 
+            var i;
+                for(i =0; i < data.length; ++i){
+                      var row = $('<tr id=' + data[i].id + '>' + 
+                        '<td>' + i + '</td>'+
+                        '<td>' + data[i].title + '</td>'+
+                        '<td>' + data[i].dateline + '</td>'+
+
+                        '<td><button type="button" id="view" class="btn btn-success" onclick="view(' + data[i].id + ');">View</button></td>'+
+                        
+                        '<td><button type="button" id="delete" class="btn btn-danger" onclick="drop( ' + data[i].id + ');">Delete</button></td>'+
+                        
+                        '<td><button type="button" id="update" class="btn btn-info" onclick="update(' + data[i].id + ');">Update</button></td>'+
+                        '</tr>'
+                        );
+                       $("table").append(row);
+                  }
+                  
+                            },            
+                error: function(jqXHR, textStatus, errorThrown){
+            console.log('error: ' + textStatus + ': ' + errorThrown);
+        }
+    });
+    return false;//suppress natural form submission
+});
+
+
+    function view(id ){
+        window.location.href ='file:///F:/Saajan/Intern/Todo/form3.html?id=' + id ;
+    }
+
+function drop(id){
+    var token = "Bearer" +  " " + localStorage.name;
+    var url='http://localhost:8000/api/todo/' + id;
+    $.ajax({
+            url:url,
+            type: "DELETE",
+            headers: {"Authorization": token},
+            success:function(result){
+                $('#' +id).remove();
+            },
+            error:function(xhr,status,error){
+                console.log("Error");
+               }    
+    
+    });
+}
+
+
+    function update(id){
+        var id1 = id;
+        window.location.href ='file:///F:/Saajan/Intern/Todo/form4.html?id=' + id1 ;
+
+    }
+    function add(){
+    
+            window.location.href ='file:///F:/Saajan/Intern/Todo/form1.html';
+        }
+    
+    
+</script>
+</body>
+</html>

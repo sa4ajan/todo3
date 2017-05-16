@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<div class="container" >
+<div id="front"></div>
+  <div class="jumbotron col-md-7">
+ <p class="app"><b>Login</b></p>
+
+  
+	<form action="#" method="POST" id="register" align="center" bgcolor="pink">
+ 
+  <div class="form-group">
+    <label class="control-label col-md-2" for="email">Email:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="form-group">
+    <label class="control-label col-md-2" for="pwd">Password:</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="password" placeholder="Enter password">
+    </div>
+  </div>
+<br>
+<br>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-md-10">
+      <button type="submit" class="btn btn-success"><b>Submit</b></button>
+    </div>
+  </div>
+  <div id="result"></div>
+
+       </form>
+
+       </div>
+       </div>
+       <script>
+      // $(document).ready(function(){
+
+    // Store
+   
+    // Retrieve
+    //document.getElementById("result").innerHTML = localStorage.getItem("name");
+       //});
+
+          $("#register").submit(function(event){
+       
+      event.preventDefault();
+     
+
+      var data = {
+              email:$("#email").val(),
+              password:$("#password").val()
+      }
+       
+   $.ajax({
+            url: "http://localhost:8000/api/login",
+            type: "POST",
+            data:data,
+            success:function(result){
+                if(result=="problem"){
+                  alert("Wrong credintals or duplicate email");
+                  $("#email").val(''),
+                  $("#password").val('')
+                }
+                else{
+                localStorage.name = result;
+                window.location.href ='file:///F:/Saajan/Intern/Todo/form2.html';
+                  }
+            },
+            error:function(xhr,status,error){
+              alert('Error');
+                console.log(error);
+            }
+        });
+}); 
+         
+       
+
+       </script>
+</body>
+</html>

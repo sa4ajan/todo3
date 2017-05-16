@@ -1,0 +1,132 @@
+body{
+font-family: cursive;
+margin: 2%;
+}
+h1{
+	text-align: center;
+}
+p{
+	margin: 2%;
+	color: blue;
+}
+h3{
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+ font-family: ""Gill Sans MT"";
+ margin: 5%;
+}
+.blue{
+	margin: 5%;
+}
+.panel{
+background-color: rgb(102, 153, 153);
+position: all;
+left: 342px;
+top: 229px;
+max-width: 40%;
+min-width: 80%;
+min-height: 35%;
+z-index: 3;
+color:	black;
+max-height: 80%;
+}
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+.btn{
+border-style: solid;
+border-width: 1px;  
+border-color: rgb(53, 126, 189);
+border-radius: 5px;
+left: 739px;  
+top: 596px;
+width: 75px;
+height: 5%;
+z-index: 5;
+color:black;
+padding-right: 5px;
+}
+.logout{
+padding-left: 71%;
+}
+.logout1{
+	padding-left: 71%;
+}
+.text{
+	color: black;
+}
+.area{
+	border: 1px solid white;
+	background-color: white;
+	height: 40px;
+}
+.area1{
+	border: 1px solid white;
+	background-color: white;
+	height: 60px;
+}
+.task1{
+	font-size: 15px;
+ font-family: "Kristen ITC";
+ color: rgb(0, 0, 0);
+ text-align: left;
+ left: 15.1px;
+ top: 10.3px;
+ z-index: 4;
+
+}
+
+
+.des{
+	height: 50%;
+}
+.click {
+		margin: 75px;
+		padding: 25px;
+
+}
+.line{
+	text-align: center;
+}
+a:link{
+	color: black;
+	text-decoration: none;
+}
+a:active{
+	color:black;
+	text-decoration: none;
+}
+a:visited{
+	color: black;
+	text-decoration: none;
+}
+a:hover{
+	color: white;
+	text-decoration: none;
+}
+.adding{
+	margin: 5%
+}
+.bluee{
+	margin:-5px -5px -5px -570px;
+	margin-left: 
+}
+.divider{
+	margin-left: 72%;
+}
+.divide{
+	margin-left: 27%;
+}
+.adding{
+	display: inline;
+	margin-left:-950px;
+}
+.divid{
+	margin-left: 18%;
+}
+.ad{
+	margin-left: 108%;
+}

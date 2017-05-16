@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>form3</title>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+    <h1>To-Do-Application</h1>
+      <div class="col-sm-offset-2  col-xs-9">
+      <h2>View</h2>
+      <div class="logout">
+        <button type="button" onclick="logout()" class="btn btn-danger">Log Out</button></div>
+        <br>
+         <div class="panel panel-default">
+           <div class="panel-body">
+
+             <form class="form-horizontal" id="register" action="#">
+              <div class="form-group">
+              <h3 class="blue">Description</h3>
+              <div class="task7">
+                <label class=" control-label col-sm-2" for="Task">Task:</label>
+               </div>
+                <div class="col-sm-8">
+                 <div class="area">
+                   <p class="text" id="tittle"></p>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                  <label class=" control-label  col-sm-2" for="Deadline">Deadline</label>
+                  <div class="col-sm-8">
+                    <div class="area">
+                      <p class="text" id="date"></p>
+                    </div>
+                  </div>
+                </div>
+              <br>
+            <div class="des">
+             <div class="form-group">
+              <label class="control-label col-sm-2" for="Description">Description:</label>
+                <div class="col-sm-8"> 
+                  <div class="area1">
+                    <p class="text" id="description"></p>
+                  </div>
+                </div>
+            </div>
+           </div>   
+           <br>
+            <div class="button">
+              <div class="form-group"> 
+                 <div class="col-sm-offset-8 col-sm-8">
+                   <button type="submit" class="btn btn-info">Back</a></button>
+                  </div>
+              </div>
+            </div>
+         </form>
+      </div>
+    </div>
+              
+<!--jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+
+function logout(){
+  localStorage.removeItem('name');
+   window.location.href ='file:///F:/Saajan/Intern/Todo/login.html';
+}
+   
+
+
+
+  $(document).ready(function(){
+    $("#register").submit(function(event){
+      event.preventDefault();
+     window.location.href ='file:///F:/Saajan/Intern/Todo/form2.html';
+    });
+  });
+
+ $(document).ready(function() {
+  var token = "Bearer" +  " " + localStorage.name;
+    var id = qs();
+     var ids = parseInt(id);
+    var url = 'http://localhost:8000/api/todo/' + ids ;
+     $.ajax({
+        type: "GET",
+        headers: {"Authorization": token},
+        url: url,
+        dataType:"json", //to parse string into JSON object,
+        success: function(data){ 
+          $("#tittle").text(data.title);
+          $("#date").text(data.dateline);
+          $("#description").text(data.description);
+        },            
+        error: function(jqXHR, textStatus, errorThrown){
+          console.log('error: ' + textStatus + ': ' + errorThrown);
+        }
+    });
+    return false;//suppress natural form submission
+});
+
+ function qs() {
+   var qsParm = new Array();
+    var query = window.location.search.substring(1);
+    var parms = query.split('&');
+    for (var i=0; i < parms.length; i++) {
+        var pos = parms[i].indexOf('=');
+        if (pos > 0) {
+            var key = parms[i].substring(0, pos);
+            var val = parms[i].substring(pos + 1);
+            return val;
+
+        }
+    }
+}
+
+</script>
+</body>
+</html>

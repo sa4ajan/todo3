@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+<title> bootstrap form</title>
+<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="form.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css"/>
+
+	
+</head>
+<body>
+
+
+<div class="container">
+		<div class="row">
+		<h1>To-Do-Application</h1>
+			<br>
+			<br>
+  			
+			<div class="col-sm-offset-2 col-xs-9">
+				<h3 class="bluee">Whats your task</h3><br><br>
+				<div class="logout">
+					<button type="submit"  id="logout" onclick="logout()" class="btn btn-danger">Log Out</button>
+				</div>
+				<br>
+				  <div class="panel panel-default">
+				  	  <div class="panel-body">
+				  	  <h3 class="blue">Details</h3>
+				  	  <br>
+						<form class="form-horizontal" id="register"  action="#">
+						 <p id="dambro"></p>
+	  						<div class="form-group">
+		  						<div class="task1">
+		   				 			<label class="control-label  col-sm-2" for="Task">Title</label>
+		   				 		</div>
+		    					<div class="col-sm-8">
+		    						<div class="task2">
+				      					<input type="Title"  minlength="7" name= "tittle"class="form-control" id="tittle" placeholder="Title" required>
+				    				</div>
+				  				</div>
+			  				</div>	
+			  				<br>
+			  				<div class="form-group">
+			  				<div class="task1">
+			    				<label class="control-label  col-sm-2" for="">Deadline</label></div>
+			    				<div class="col-sm-8">
+			    				<div class="task4"> 
+			      					<input type="date" class="form-control" id="date" name ="date" placeholder="YYYY/MM/DD" required>
+			      					</div>
+			    				</div>
+			  				</div>
+			  				<br>
+			  				<div id="special">
+			  				<div class="form-group">
+			  				<div class="task1">
+			    				<label class="control-label  col-sm-2" for="Description">Description:</label></div>
+			    				<div class="col-sm-8"> 
+			    				<div class="task6">
+			      					<textarea name="desc" class="form-control" name ="description" minlength="15" id="description" cols=5o rows=3 placeholder="Description" required ></textarea>
+							</div>
+			    				</div>
+			  				</div>
+			  				</div>
+						<br> 
+		  					
+		    	<div class="form-group"> 
+              <div class="col-sm-8"><div class="divide">
+               <button class="btn btn-info" onclick="back()">Back</button>
+               <div class="divider"> 
+               <button type="submit" class="btn btn-success">ADD</button>
+              </div>
+            </div>
+            </div>
+            </div>
+
+  				</form>
+
+   			</div>
+   		</div>
+   	</div>
+   </div>
+  </div>
+
+
+
+
+
+<script>
+
+//document.getElementById('dambro').innerHTML = token;// localStorage.getItem('name');
+function back(){
+	  window.location.href ='file:///F:/Saajan/Intern/Todo/form2.html';
+}
+
+function logout(){
+	localStorage.removeItem('name');
+	 window.location.href ='file:///F:/Saajan/Intern/Todo/login.html';
+}
+   
+
+
+   $("#register").submit(function(event){
+   	
+      event.preventDefault();
+      var token = "Bearer" +  " " + localStorage.name;
+
+      var data = {
+      				title:$("#tittle").val(),
+      				date:$("#date").val(),
+      				description:$("#description").val()
+      				
+      }
+       
+   $.ajax({
+            url: "http://localhost:8000/api/todo",
+            type: "POST",
+            data:data,
+            headers: {"Authorization": token},
+            success:function(result){
+                alert("Successfully Add!");
+                console.log(result);
+                $("#tittle").val(''),
+                $("#date").val(''),
+                $("#description").val('')
+            },
+            error:function(xhr,status,error){
+            	alert("error");
+                console.log(error);
+            }
+        });
+});
+
+
+$(document).ready(function(){
+	$("#back").click(function(){
+		 window.location.href ='file:///F:/Saajan/Intern/Todo/form2.html';
+	});
+});
+
+$("#register").validate();
+
+</script>
+</body>
+
+</html>

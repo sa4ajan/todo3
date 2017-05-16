@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<div class="container" >
+  <div class="jumbotron col-md-7">
+ <p class="app">Registration</p>
+
+  
+	<form action="#" method="POST" id="register" align="center" bgcolor="pink">
+	
+
+<div class="form-group row">
+  <label for="example-email-input" class="col-md-2 col-form-label">Name</label>
+  <div class="col-md-offset-2 col-md-7">
+    <input class="form-control" type="text" placeholder ="Yangwa" id="name">
+  </div>
+</div>
+
+<div class="form-group row">
+  <label for="example-email-input" class="col-md-2 col-form-label">Email</label>
+  <div class="col-md-offset-2 col-md-7">
+    <input class="form-control" type="email" placeholder ="example@example.com" id="email">
+  </div>
+</div>
+
+<div class="form-group row">
+  <label for="example-password-input" class="col-md-2 col-form-label">Password</label>
+  <div class="col-md-offset-2 col-md-7">
+    <input class="form-control" type="password" placeholder="*****" id="password">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="example-password-input" class="col-md-2 col-form-label">ConfirmPassword</label>
+  <div class="col-md-offset-2 col-md-7">
+    <input class="form-control" type="password" placeholder="*****" id="cpassword">
+  </div>
+</div>
+
+
+  <center> <button type="submit" class="btn btn-success"><strong>Registger</strong></button></center>
+
+       </form>
+       </div>
+       </div>
+
+<script>
+
+ $("#register").submit(function(event){
+      event.preventDefault();
+      
+
+      var data = {
+              name:$("#name").val(),
+              email:$("#email").val(),
+              password:$("#password").val()
+      }
+       
+   $.ajax({
+            url: "http://localhost:8000/api/register",
+            type: "POST",
+            data:data,
+            success:function(result){
+                alert("Successfully Add!");
+                console.log(result);
+               window.location.href ='file:///F:/Saajan/Intern/Todo/login.html';
+            },
+            error:function(xhr,status,error){
+              alert('Error');
+                console.log(error);
+            }
+        });
+});
+
+
+       	
+</script>
+</body>
+</html>

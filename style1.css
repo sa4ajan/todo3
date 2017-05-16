@@ -1,0 +1,25 @@
+body{
+font-family: cursive;
+}
+.jumbotron{
+	margin-left: 230px;
+	margin-right: 180px;
+	margin-top: 100px;
+	background-color: rgb(102, 153, 153);
+
+}
+.app{
+	text-align: center;	
+}
+
+.form-group{
+	padding-left: 40px;
+}
+.tee{
+	font-size: 20px;
+}
+
+#front{
+padding: 50px;
+	
+	}
